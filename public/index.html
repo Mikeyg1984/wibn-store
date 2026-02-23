@@ -86,11 +86,16 @@
 </main>
 
 <!-- Cart drawer -->
-<div class="overlay" id="overlay" hidden></div>
+<div class="overlay" id="overlay" hidden
+  onclick="document.getElementById('cart').hidden=true; document.getElementById('overlay').hidden=true;">
+</div>
 <aside class="cart" id="cart" hidden>
   <div class="cartHead">
     <div class="cartTitle">Cart</div>
-    <button class="iconBtn" id="closeCart">✕</button>
+    <button class="iconBtn" id="closeCart" type="button" aria-label="Close cart"
+  onclick="document.getElementById('cart').hidden=true; document.getElementById('overlay').hidden=true;">
+  ✕
+</button>
   </div>
   <div class="cartItems" id="cartItems"></div>
   <div class="cartFoot">
