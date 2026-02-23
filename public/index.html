@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Wooden It Be Nice?</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<header class="nav">
+  <div class="brand">
+    <img class="logo" src="/assets/wibn-logo-color.png" alt="Wooden It Be Nice?" />
+  </div>
+  <nav class="links">
+    <a href="#shop">Shop</a>
+    <a href="#custom">Custom Orders</a>
+    <a href="/admin.html">Admin</a>
+    <button class="cartBtn" id="cartBtn">Cart <span class="pill" id="cartCount">0</span></button>
+  </nav>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <div>
+      <h1>Engraved wood coasters people actually keep.</h1>
+      <p>Farmhouse • Fishing • Hunting • Names & dates • Bulk gifts. Ships anywhere.</p>
+      <div class="ctaRow">
+        <a class="btn primary" href="#shop">Shop sets</a>
+        <a class="btn" href="#custom">Request custom</a>
+      </div>
+      <div class="fineprint">Shipping: $12 flat rate • Free over $49 • Local pickup available</div>
+    </div>
+    <div class="heroCard">
+      <div class="heroImg"></div>
+      <div class="heroMeta">
+        <div class="kicker">Made to order</div>
+        <div class="title">Pick a set or request custom</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="shop" class="section">
+    <div class="sectionHead">
+      <h2>Shop</h2>
+      <div class="filters">
+        <input id="search" placeholder="Search products…" />
+        <select id="category">
+          <option value="all">All</option>
+          <option value="farm">Farm</option>
+          <option value="outdoors">Outdoors</option>
+          <option value="custom">Custom</option>
+          <option value="bulk">Bulk</option>
+        </select>
+      </div>
+    </div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section id="custom" class="section">
+    <h2>Custom Orders</h2>
+    <p class="muted">Fill this out and I’ll message you to confirm details and send an invoice link.</p>
+
+    <form class="form" id="invoiceForm">
+      <div class="row">
+        <label>Your name<input required name="name"></label>
+        <label>Email or phone<input required name="contact"></label>
+      </div>
+      <label>What do you want engraved?<textarea required name="details" rows="4"></textarea></label>
+
+      <div class="row">
+        <label>Qty (sets of 4)<input type="number" min="1" value="1" name="qty"></label>
+        <label>Shipping method
+          <select name="ship">
+            <option value="ship">Ship ($12 / Free over $49)</option>
+            <option value="pickup">Local pickup (we’ll message to schedule)</option>
+          </select>
+        </label>
+      </div>
+
+      <button class="btn primary" type="submit">Request invoice</button>
+      <div class="fineprint" id="invoiceResult"></div>
+    </form>
+  </section>
+</main>
+
+<!-- Cart drawer -->
+<div class="overlay" id="overlay" hidden></div>
+<aside class="cart" id="cart" hidden>
+  <div class="cartHead">
+    <div class="cartTitle">Cart</div>
+    <button class="iconBtn" id="closeCart">✕</button>
+  </div>
+  <div class="cartItems" id="cartItems"></div>
+  <div class="cartFoot">
+    <div class="rowline"><span>Subtotal</span><strong id="subtotal">$0</strong></div>
+    <div class="rowline"><span>Shipping</span><strong id="shipCost">$0</strong></div>
+    <div class="rowline"><span>Total</span><strong id="total">$0</strong></div>
+    <div class="fineprint">Free shipping over $49. Pickup available.</div>
+
+    <div class="payRow">
+      <button class="btn primary" id="checkoutStripe">Pay with Stripe</button>
+      <button class="btn" id="checkoutPayPal">Pay with PayPal</button>
+      <button class="btn" id="requestInvoice">Request invoice (mixed/custom)</button>
+    </div>
+  </div>
+</aside>
+
+<script src="app.js" type="module"></script>
+</body>
+</html>
