@@ -116,4 +116,8 @@ label input, label textarea{margin-top:6px;font-weight:500}
 @media (max-width:520px){
   .grid{grid-template-columns:1fr}
 }
-.logo{ height:46px; width:auto; display:block; }
+.logo {
+  height: 50px;
+  width: auto;
+  display: block;
+}
