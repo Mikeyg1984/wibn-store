@@ -242,6 +242,9 @@ function init(){
   $("closeCart").addEventListener("click", closeCart);
   $("overlay").addEventListener("click", closeCart);
   window.addEventListener("keydown", (e) => { if (e.key === "Escape") closeCart(); });
+  document.getElementById("closeCart").addEventListener("click", closeCart);
+document.getElementById("overlay").addEventListener("click", closeCart);
+window.addEventListener("keydown", (e) => { if (e.key === "Escape") closeCart(); });
 
  
 }
