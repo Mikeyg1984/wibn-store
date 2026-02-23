@@ -87,7 +87,7 @@ function renderGrid(){
         <div class="cardTitle">${p.name}</div>
         <div class="cardMeta">
           <div class="muted">${money(p.price)}</div>
-          <button class="btn primary" data-add="${p.id}">Add</button>
+          <button class="btn primary" data-add="${p.id}">Add to Cart</button>
         </div>
       </div>
     `;
