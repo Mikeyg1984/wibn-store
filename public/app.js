@@ -218,7 +218,7 @@ ${details}`
     );
 
     // Replace with your email:
-    const to = "REPLACE_WITH_YOUR_EMAIL@example.com";
+    const to = "threeohninellc@gmail.com";
     window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
     $("customResult").textContent = "Your email app should open now. If not, message me on Facebook with these details.";
     form.reset();
@@ -242,8 +242,7 @@ function init(){
   $("closeCart").addEventListener("click", closeCart);
   $("overlay").addEventListener("click", closeCart);
 
-  $("stripeCheckout").addEventListener("click", stripeCheckout);
-  $("paypalCheckout").addEventListener("click", paypalCheckout);
+ 
 }
 
 init();
