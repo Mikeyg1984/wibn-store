@@ -250,3 +250,41 @@ window.addEventListener("keydown", (e) => { if (e.key === "Escape") closeCart();
 }
 
 init();
+
+document.getElementById("requestInvoice").addEventListener("click", requestInvoiceFromCart);
+
+function requestInvoiceFromCart() {
+
+  const name = prompt("Customer name:");
+  if(!name) return;
+
+  const contact = prompt("Customer email or phone:");
+  if(!contact) return;
+
+  let orderText = "New Order Request\n\n";
+  orderText += "Customer: " + name + "\n";
+  orderText += "Contact: " + contact + "\n\n";
+  orderText += "Items:\n";
+
+  let subtotal = 0;
+
+  Object.entries(state.cart).forEach(([id, qty]) => {
+    const p = PRODUCTS.find(x => x.id === id);
+    if(!p) return;
+
+    const line = p.price * qty;
+    subtotal += line;
+
+    orderText += "- " + p.name + " x" + qty + " ($" + line + ")\n";
+  });
+
+  orderText += "\nSubtotal: $" + subtotal + "\n";
+
+  let shipping = subtotal >= 49 ? 0 : 12;
+
+  orderText += "Shipping: $" + shipping + "\n";
+  orderText += "Total: $" + (subtotal + shipping) + "\n";
+
+  alert(orderText + "\n\nCopy this and send it to hiremikeg@gmail.com for an invoice.");
+
+}
