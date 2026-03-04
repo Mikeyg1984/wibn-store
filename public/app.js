@@ -255,6 +255,8 @@ document.getElementById("requestInvoice").addEventListener("click", requestInvoi
 
 function requestInvoiceFromCart() {
 
+  alert("Request Invoice clicked");
+  
   const name = prompt("Customer name:");
   if(!name) return;
 
