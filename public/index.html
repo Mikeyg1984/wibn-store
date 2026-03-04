@@ -17,7 +17,10 @@
     <a href="#shop">Shop</a>
     <a href="#custom">Custom Orders</a>
     <a href="/admin.html">Admin</a>
-    <button class="cartBtn" id="cartBtn">Cart <span class="pill" id="cartCount">0</span></button>
+    <button class="cartBtn" id="cartBtn"
+  onclick="openCart(); renderCart();">
+  Cart <span class="pill" id="cartCount">0</span>
+</button>
   </nav>
 </header>
 
@@ -105,7 +108,10 @@
     <div class="fineprint">Free shipping over $49. Pickup available.</div>
 
    <div class="payRow">
-  <button class="btn primary" id="requestInvoice">Request Invoice</button>
+  <button class="btn primary" id="requestInvoice"
+  onclick="requestInvoiceFromCart();">
+  Request Invoice
+</button>
 </div>
 <div class="fineprint">
   After you submit your request, I’ll message you to confirm details and send a payment invoice link.
