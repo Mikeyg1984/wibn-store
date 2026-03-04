@@ -288,3 +288,9 @@ function requestInvoiceFromCart() {
   alert(orderText + "\n\nCopy this and send it to hiremikeg@gmail.com for an invoice.");
 
 }
+
+// ---- Make functions available to HTML onclick handlers ----
+window.openCart = openCart;
+window.closeCart = closeCart;
+window.renderCart = renderCart;
+window.requestInvoiceFromCart = requestInvoiceFromCart;
