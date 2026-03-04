@@ -121,3 +121,5 @@ label input, label textarea{margin-top:6px;font-weight:500}
   width: auto;
   display: block;
 }
+/* FORCE hidden elements to actually disappear */
+[hidden] { display: none !important; }
