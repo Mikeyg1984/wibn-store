@@ -234,6 +234,7 @@ ${details}`
     $("customResult").textContent = "Your email app should open now. If not, message me on Facebook with these details.";
     form.reset();
   });
+}
 
 // Cart drawer
 function openCart(){ $("cart").hidden=false; $("overlay").hidden=false; }
