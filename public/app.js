@@ -381,7 +381,7 @@ function wireInvoiceCheckout(){
   btn.addEventListener("click", () => showInvoiceCheckout());
 
   form.addEventListener("submit", (e) => {
-    ...
+
   });
 }
 
