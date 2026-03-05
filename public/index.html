@@ -65,7 +65,13 @@
     <h2>Custom Orders</h2>
     <p class="muted">Fill this out and I’ll message you to confirm details and send an invoice link.</p>
 
-    <form class="form" id="invoiceForm">
+    <form class="form" id="invoiceForm"
+      action="https://formsubmit.co/hiremikeg@gmail.com"
+      method="POST">
+      <input type="hidden" name="_subject" value="New Custom Order Request (WIBN)">
+<input type="hidden" name="_captcha" value="false">
+<input type="text" name="_honey" style="display:none !important" tabindex="-1" autocomplete="off">
+      <input type="hidden" name="_next" value="https://wibn-store.threeohninellc.workers.dev/#thanks">
       <div class="row">
         <label>Your name<input required name="name"></label>
         <label>Email or phone<input required name="contact"></label>
@@ -151,5 +157,6 @@
 </aside>
 
 <script src="app.js"></script>
+  <div id="thanks" class="section" style="display:none;"></div>
 </body>
 </html>
