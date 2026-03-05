@@ -105,7 +105,10 @@
     <div class="fineprint">Free shipping over $49. Pickup available.</div>
 
    <div class="payRow">
-  <button class="btn primary" id="requestInvoice">Request Invoice</button>
+  <button class="btn primary" id="requestInvoice" type="button"
+  onclick="document.getElementById('invoiceCheckout').hidden=false;">
+  Request Invoice
+</button>
 </div>
 
 <form id="invoiceCheckout" class="form" hidden style="margin-top:12px;">
