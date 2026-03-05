@@ -571,3 +571,13 @@ window.openCustomForm = function(){
     });
   }
 })();
+(function(){
+  const thanks = document.getElementById("thanks");
+  if(!thanks) return;
+
+  if (location.hash === "#thanks") {
+    thanks.classList.add("show");
+  } else {
+    thanks.classList.remove("show");
+  }
+})();
