@@ -44,6 +44,13 @@ const PRODUCTS = [
 
 const $ = (id) => document.getElementById(id);
 
+// Safe event binder: won't crash if element doesn't exist
+const on = (id, event, handler) => {
+  const el = document.getElementById(id);
+  if (!el) return; // ✅ do nothing if missing
+  el.addEventListener(event, handler);
+};
+
 const state = {
   cart: JSON.parse(localStorage.getItem("wibn_cart") || "{}"), // {id: qty}
 };
@@ -239,15 +246,13 @@ function init(){
   renderCart();
   setupCustomForm();
 
-  $("search").addEventListener("input", renderGrid);
-  $("category").addEventListener("change", renderGrid);
+  on("search", "input", renderGrid);
+on("category", "change", renderGrid);
 
-  $("cartBtn").addEventListener("click", ()=>{ openCart(); renderCart(); });
-  $("closeCart").addEventListener("click", closeCart);
-  $("overlay").addEventListener("click", closeCart);
+on("cartBtn", "click", () => { openCart(); renderCart(); });
+on("closeCart", "click", closeCart);
+on("overlay", "click", closeCart);
   window.addEventListener("keydown", (e) => { if (e.key === "Escape") closeCart(); });
-  document.getElementById("closeCart").addEventListener("click", closeCart);
-document.getElementById("overlay").addEventListener("click", closeCart);
 window.addEventListener("keydown", (e) => { if (e.key === "Escape") closeCart(); });
 
  
