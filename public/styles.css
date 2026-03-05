@@ -162,3 +162,6 @@ label input, label textarea{margin-top:6px;font-weight:500}
 .cardBody { padding: 12px; display: grid; gap: 8px; }
 .cardTitle { font-weight: 800; }
 .cardPrice { opacity: 0.85; }
+
+#thanks { display: none; }
+#thanks.show { display: block; }
