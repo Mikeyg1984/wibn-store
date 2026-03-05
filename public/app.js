@@ -299,3 +299,102 @@ window.requestInvoiceFromCart = requestInvoiceFromCart;
 window.openCart = openCart;
 window.renderCart = renderCart;
 window.requestInvoiceFromCart = requestInvoiceFromCart;
+
+// ---------------------------
+// INVOICE CHECKOUT SYSTEM
+// ---------------------------
+
+function buildOrderSummary(shippingMethod){
+
+  const entries = Object.entries(state.cart);
+  const lines = [];
+  let subtotal = 0;
+
+  for (const [id, qty] of entries){
+    const p = PRODUCTS.find(x => x.id === id);
+    if(!p) continue;
+
+    const lineTotal = p.price * qty;
+    subtotal += lineTotal;
+
+    lines.push(`${p.name} x${qty} = $${lineTotal.toFixed(2)}`);
+  }
+
+  const shipping = (shippingMethod === "pickup") ? 0 : (subtotal >= 49 ? 0 : 12);
+  const total = subtotal + shipping;
+
+  return {
+    itemsText: lines.join("\n"),
+    totalsText: `Subtotal: $${subtotal.toFixed(2)} | Shipping: $${shipping.toFixed(2)} | Total: $${total.toFixed(2)}`
+  };
+}
+
+function showInvoiceCheckout(){
+
+  const form = document.getElementById("invoiceCheckout");
+
+  if(Object.keys(state.cart).length === 0){
+    alert("Your cart is empty.");
+    return;
+  }
+
+  form.hidden = false;
+
+  const shipSel = form.querySelector('select[name="shipping_method"]');
+  const { itemsText, totalsText } = buildOrderSummary(shipSel.value);
+
+  document.getElementById("order_items").value = itemsText;
+  document.getElementById("order_totals").value = totalsText;
+  document.getElementById("order_url").value = window.location.href;
+
+}
+
+function wireInvoiceCheckout(){
+
+  const btn = document.getElementById("requestInvoice");
+  const form = document.getElementById("invoiceCheckout");
+
+  btn.addEventListener("click", () => showInvoiceCheckout());
+
+  form.addEventListener("submit", (e) => {
+
+    e.preventDefault();
+
+    const ship = form.querySelector('select[name="shipping_method"]').value;
+
+    const updated = buildOrderSummary(ship);
+
+    document.getElementById("order_items").value = updated.itemsText;
+    document.getElementById("order_totals").value = updated.totalsText;
+    document.getElementById("order_url").value = window.location.href;
+
+    const action = "https://formsubmit.co/hiremikeg@gmail.com";
+
+    const data = new FormData(form);
+
+    fetch(action, {
+      method: "POST",
+      body: data,
+      headers: { "Accept": "application/json" }
+    })
+    .then(() => {
+
+      alert("Order request sent! I will message you with the invoice.");
+
+      state.cart = {};
+      saveCart();
+      renderCart();
+      closeCart();
+
+      form.reset();
+      form.hidden = true;
+
+    })
+    .catch(() => {
+      alert("Something blocked the order request.");
+    });
+
+  });
+}
+
+document.addEventListener("DOMContentLoaded", wireInvoiceCheckout);
