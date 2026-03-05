@@ -354,9 +354,24 @@ function wireInvoiceCheckout(){
   const btn = document.getElementById("requestInvoice");
   const form = document.getElementById("invoiceCheckout");
 
+  if(!btn){
+    console.error("Missing #requestInvoice button in HTML");
+    return;
+  }
+  if(!form){
+    console.error("Missing #invoiceCheckout form in HTML");
+    return;
+  }
+
+  // Optional: confirm wiring
+  // alert("wireInvoiceCheckout ran");
+
   btn.addEventListener("click", () => showInvoiceCheckout());
 
   form.addEventListener("submit", (e) => {
+    ...
+  });
+}
 
     e.preventDefault();
 
