@@ -123,3 +123,15 @@ label input, label textarea{margin-top:6px;font-weight:500}
 }
 /* FORCE hidden elements to actually disappear */
 [hidden] { display: none !important; }
+/* Flash highlight when hero buttons scroll */
+.flash {
+  outline: 4px solid rgba(140, 82, 37, 0.35);
+  border-radius: 16px;
+  animation: flashGlow 900ms ease-out;
+}
+
+@keyframes flashGlow {
+  0%   { outline-color: rgba(140, 82, 37, 0.0); }
+  30%  { outline-color: rgba(140, 82, 37, 0.55); }
+  100% { outline-color: rgba(140, 82, 37, 0.0); }
+}
