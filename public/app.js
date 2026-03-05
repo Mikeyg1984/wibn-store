@@ -296,3 +296,8 @@ window.openCart = openCart;
 window.closeCart = closeCart;
 window.renderCart = renderCart;
 window.requestInvoiceFromCart = requestInvoiceFromCart;
+
+// expose functions for onclick handlers
+window.openCart = openCart;
+window.renderCart = renderCart;
+window.requestInvoiceFromCart = requestInvoiceFromCart;
