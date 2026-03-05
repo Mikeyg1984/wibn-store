@@ -196,8 +196,12 @@ function paypalCheckout(){
 
 // Custom form: just builds a mailto as MVP
 function setupCustomForm(){
-  const form = $("customForm");
-  form.addEventListener("submit",(e)=>{
+  const form = document.getElementById("customForm"); // whatever your id is
+  if(!form) return; // ✅ STOP if the element doesn't exist
+  form.addEventListener("submit", (e) => {
+    // existing code
+  });
+}
     e.preventDefault();
     const data = new FormData(form);
     const name = data.get("name");
