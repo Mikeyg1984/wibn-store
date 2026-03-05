@@ -105,15 +105,42 @@
     <div class="fineprint">Free shipping over $49. Pickup available.</div>
 
    <div class="payRow">
-  <button class="btn primary" id="requestInvoice"
-  onclick="requestInvoiceFromCart();">
-  Request Invoice
-</button>
+  <button class="btn primary" id="requestInvoice">Request Invoice</button>
 </div>
-<div class="fineprint">
-  After you submit your request, I’ll message you to confirm details and send a payment invoice link.
-</div>
-  </div>
+
+<form id="invoiceCheckout" class="form" hidden style="margin-top:12px;">
+  <!-- FormSubmit: emails to you -->
+  <input type="hidden" name="_subject" value="New WIBN Order Request (Invoice Needed)">
+  <input type="hidden" name="_captcha" value="false">
+  <input type="text" name="_honey" style="display:none">
+
+  <label>Your Name
+    <input name="customer_name" required>
+  </label>
+
+  <label>Email or Phone
+    <input name="customer_contact" required>
+  </label>
+
+  <label>Shipping Method
+    <select name="shipping_method" required>
+      <option value="ship">Ship ($12 / Free over $49)</option>
+      <option value="pickup">Local pickup (we’ll message to schedule)</option>
+    </select>
+  </label>
+
+  <label>Notes (optional)
+    <textarea name="notes" rows="3" placeholder="Engraving name/date, special requests, etc."></textarea>
+  </label>
+
+  <!-- These get filled automatically -->
+  <input type="hidden" name="order_items" id="order_items">
+  <input type="hidden" name="order_totals" id="order_totals">
+  <input type="hidden" name="order_url" id="order_url">
+
+  <button class="btn primary" type="submit">Submit Order Request</button>
+  <div class="fineprint">After you submit, I’ll confirm details and send an invoice link.</div>
+</form>
 </aside>
 
 <script src="app.js"></script>
