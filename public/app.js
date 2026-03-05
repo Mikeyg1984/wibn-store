@@ -418,3 +418,27 @@ if (document.readyState === "loading") {
 } else {
   wireInvoiceCheckout();
 }
+// --- HERO BUTTONS: smooth scroll + highlight ---
+function scrollToSection(id){
+  const el = document.getElementById(id);
+  if(!el) return;
+
+  el.scrollIntoView({ behavior: "smooth", block: "start" });
+
+  // Flash highlight so user sees it worked
+  el.classList.remove("flash");
+  // force reflow so re-adding works every click
+  void el.offsetWidth;
+  el.classList.add("flash");
+}
+
+function wireHeroButtons(){
+  const shopBtn = document.getElementById("heroShopBtn");
+  const customBtn = document.getElementById("heroCustomBtn");
+
+  if(shopBtn) shopBtn.addEventListener("click", () => scrollToSection("shop"));
+  if(customBtn) customBtn.addEventListener("click", () => scrollToSection("custom"));
+}
+
+// run now (script is at bottom of page)
+wireHeroButtons();
