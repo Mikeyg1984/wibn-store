@@ -320,7 +320,19 @@ function buildOrderSummary(shippingMethod){
     lines.push(`${p.name} x${qty} = $${lineTotal.toFixed(2)}`);
   }
 
-  const shipping = (shippingMethod === "pickup") ? 0 : (subtotal >= 49 ? 0 : 12);
+  let totalSets = Object.values(state.cart).reduce((a,b)=>a+b,0);
+
+let shipping = 0;
+
+if(totalSets === 1){
+  shipping = 12;
+}
+else if(totalSets === 2){
+  shipping = 14;
+}
+else if(totalSets >= 3){
+  shipping = 0;
+}
   const total = subtotal + shipping;
 
   return {
