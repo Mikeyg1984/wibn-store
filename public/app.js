@@ -233,7 +233,7 @@ ${details}`
     window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
     $("customResult").textContent = "Your email app should open now. If not, message me on Facebook with these details.";
     form.reset();
-  });
+  );
 }
 
 // Cart drawer
