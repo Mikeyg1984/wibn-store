@@ -397,4 +397,9 @@ function wireInvoiceCheckout(){
   });
 }
 
-document.addEventListener("DOMContentLoaded", wireInvoiceCheckout);
+// Wire up invoice checkout even if DOMContentLoaded already happened
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", wireInvoiceCheckout);
+} else {
+  wireInvoiceCheckout();
+}
