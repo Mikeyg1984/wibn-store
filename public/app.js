@@ -464,6 +464,17 @@ wireHeroButtons();
     })
     .catch(() => {
       if(result) result.textContent = "Something blocked the request. Please try again.";
+      window.quickAdd = function(productId){
+  addToCart(productId);
+  openCart();
+  renderCart();
+};
+
+window.openCustomForm = function(){
+  const custom = document.getElementById("custom");
+  if(custom) custom.style.display = "block";
+  custom?.scrollIntoView({ behavior: "smooth", block: "start" });
+};
     });
   });
 })();
