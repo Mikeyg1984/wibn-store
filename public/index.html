@@ -5,16 +5,20 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Wooden It Be Nice?</title>
   <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <div style="position:fixed;top:0;left:0;background:yellow;padding:6px;z-index:99999;">
-  DEPLOY TEST: 12345
-</div>
 <header class="nav">
   <div class="brand">
     <img src="/assets/logo_color.png" alt="Wooden It Be Nice?" class="logo">
   </div>
-  <nav class="links">...</nav>
+  </div>
+  <nav class="links">
+    <a href="#shop">Shop</a>
+    <a href="#custom">Custom Orders</a>
+    <a href="/admin.html">Admin</a>
+    <button class="cartBtn" id="cartBtn"
+  onclick="openCart(); renderCart();">
+  Cart <span class="pill" id="cartCount">0</span>
+</button>
+  </nav>
 </header>
 
 <main class="wrap">
