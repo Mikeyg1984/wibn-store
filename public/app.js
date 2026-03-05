@@ -1,4 +1,3 @@
-alert("wireInvoiceCheckout ran");
 // Edit products here
 const PRODUCTS = [
   {
