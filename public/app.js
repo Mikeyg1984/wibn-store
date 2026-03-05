@@ -442,3 +442,28 @@ function wireHeroButtons(){
 
 // run now (script is at bottom of page)
 wireHeroButtons();
+// Custom Orders form -> send via fetch so it doesn't navigate away
+(function wireCustomOrderForm(){
+  const form = document.getElementById("invoiceForm");
+  const result = document.getElementById("invoiceResult");
+  if(!form) return;
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const data = new FormData(form);
+
+    fetch("https://formsubmit.co/hiremikeg@gmail.com", {
+      method: "POST",
+      body: data,
+      headers: { "Accept": "application/json" }
+    })
+    .then(() => {
+      if(result) result.textContent = "Request sent! I’ll message you to confirm details and send an invoice link.";
+      form.reset();
+    })
+    .catch(() => {
+      if(result) result.textContent = "Something blocked the request. Please try again.";
+    });
+  });
+})();
