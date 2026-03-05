@@ -421,7 +421,7 @@ function wireInvoiceCheckout(){
       alert("Something blocked the order request.");
     });
 
-  });
+  
 }
 
 // Wire up invoice checkout even if DOMContentLoaded already happened
