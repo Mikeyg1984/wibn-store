@@ -417,9 +417,7 @@ function wireInvoiceCheckout(){
       form.hidden = true;
 
     })
-    .catch(() => {
-      alert("Something blocked the order request.");
-    });
+    
 
   
 
@@ -580,3 +578,21 @@ window.openCustomForm = function(){
     thanks.classList.remove("show");
   }
 })();
+// ----------------------------
+// Invoice request (simple + safe)
+// ----------------------------
+function showInvoiceForm() {
+  const form = document.getElementById("invoiceCheckout");
+  if (form) form.hidden = false;
+}
+
+window.requestInvoiceFromCart = function () {
+  // Opens the invoice form in the cart
+  showInvoiceForm();
+};
+
+// Also wire the cart "Request Invoice" button if it exists
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("requestInvoice");
+  if (btn) btn.addEventListener("click", showInvoiceForm);
+});
