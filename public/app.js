@@ -533,3 +533,41 @@ window.openCustomForm = function(){
   if(custom) custom.style.display = "block";
   custom?.scrollIntoView?.({ behavior: "smooth", block: "start" });
 };
+// --- Featured buttons wiring (no inline onclick needed) ---
+(function wireFeaturedButtons(){
+  const addButtons = document.querySelectorAll(".addBtn");
+
+  addButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const id = btn.getAttribute("data-id");
+
+      // Try your existing addToCart() if present
+      if (typeof addToCart === "function") {
+        addToCart(id);
+      } else {
+        // Fallback: add directly to state.cart if your app uses it
+        if (!window.state) window.state = {};
+        if (!state.cart) state.cart = {};
+        state.cart[id] = (state.cart[id] || 0) + 1;
+        if (typeof saveCart === "function") saveCart();
+      }
+
+      if (typeof renderCart === "function") renderCart();
+
+      // Open cart drawer
+      const cart = document.getElementById("cart");
+      const overlay = document.getElementById("overlay");
+      if (cart) cart.hidden = false;
+      if (overlay) overlay.hidden = false;
+    });
+  });
+
+  const startCustom = document.getElementById("startCustomBtn");
+  if(startCustom){
+    startCustom.addEventListener("click", () => {
+      const custom = document.getElementById("custom");
+      if(custom) custom.style.display = "block";
+      custom?.scrollIntoView?.({ behavior: "smooth", block: "start" });
+    });
+  }
+})();
