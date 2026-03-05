@@ -255,39 +255,37 @@ document.getElementById("requestInvoice").addEventListener("click", requestInvoi
 
 function requestInvoiceFromCart() {
 
-  alert("Request Invoice clicked");
-  
   const name = prompt("Customer name:");
-  if(!name) return;
+  if (!name) return;
 
   const contact = prompt("Customer email or phone:");
-  if(!contact) return;
+  if (!contact) return;
 
-  let orderText = "New Order Request\n\n";
-  orderText += "Customer: " + name + "\n";
-  orderText += "Contact: " + contact + "\n\n";
-  orderText += "Items:\n";
+  let order = "NEW ORDER REQUEST\n\n";
+  order += "Customer: " + name + "\n";
+  order += "Contact: " + contact + "\n\n";
+  order += "Items:\n";
 
   let subtotal = 0;
 
   Object.entries(state.cart).forEach(([id, qty]) => {
     const p = PRODUCTS.find(x => x.id === id);
-    if(!p) return;
+    if (!p) return;
 
-    const line = p.price * qty;
-    subtotal += line;
+    const lineTotal = p.price * qty;
+    subtotal += lineTotal;
 
-    orderText += "- " + p.name + " x" + qty + " ($" + line + ")\n";
+    order += "- " + p.name + " x" + qty + " ($" + lineTotal + ")\n";
   });
 
-  orderText += "\nSubtotal: $" + subtotal + "\n";
+  const shipping = subtotal >= 49 ? 0 : 12;
+  const total = subtotal + shipping;
 
-  let shipping = subtotal >= 49 ? 0 : 12;
+  order += "\nSubtotal: $" + subtotal;
+  order += "\nShipping: $" + shipping;
+  order += "\nTotal: $" + total;
 
-  orderText += "Shipping: $" + shipping + "\n";
-  orderText += "Total: $" + (subtotal + shipping) + "\n";
-
-  alert(orderText + "\n\nCopy this and send it to hiremikeg@gmail.com for an invoice.");
+  alert(order + "\n\nCopy this and send it to threeohninellc@gmail.com for an invoice.");
 
 }
 
