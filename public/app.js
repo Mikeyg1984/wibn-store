@@ -476,16 +476,47 @@ wireHeroButtons();
     })
     .catch(() => {
       if(result) result.textContent = "Something blocked the request. Please try again.";
-      window.quickAdd = function(productId){
-  addToCart(productId);
-  openCart();
-  renderCart();
+      // ----------------------------
+// Featured buttons: guaranteed add-to-cart
+// ----------------------------
+
+// Fallback openCart if your file doesn't have it
+function forceOpenCart(){
+  const cart = document.getElementById("cart");
+  const overlay = document.getElementById("overlay");
+  if(cart) cart.hidden = false;
+  if(overlay) overlay.hidden = false;
+}
+
+// Fallback renderCart if your file doesn't have it
+function forceRenderCart(){
+  // If your app already has renderCart(), use it.
+  if(typeof renderCart === "function"){
+    renderCart();
+    return;
+  }
+  // Otherwise do nothing (cart may still open).
+}
+
+window.quickAdd = function(productId){
+  // Make sure state/cart exists
+  if(!window.state) window.state = {};
+  if(!state.cart) state.cart = {};
+
+  // Add 1 of that product
+  state.cart[productId] = (state.cart[productId] || 0) + 1;
+
+  // Save if you have saveCart()
+  if(typeof saveCart === "function") saveCart();
+
+  // Update UI
+  forceRenderCart();
+  forceOpenCart();
 };
 
 window.openCustomForm = function(){
   const custom = document.getElementById("custom");
   if(custom) custom.style.display = "block";
-  custom?.scrollIntoView({ behavior: "smooth", block: "start" });
 };
     });
   });
