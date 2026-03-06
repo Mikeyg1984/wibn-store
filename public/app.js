@@ -395,3 +395,148 @@ window.openCustomForm = function () {
 };
 
 document.addEventListener("DOMContentLoaded", init);
+// ============================
+// COASTER DESIGNER
+// ============================
+
+const DESIGNER = {
+  shape: "square",
+  border: "border1.png",
+  scene: "scene1.png",
+  text: ""
+};
+
+const BORDER_FILES = [
+  "border1.png", "border2.png", "border3.png",
+  "border4.png", "border5.png", "border6.png"
+];
+
+const SCENE_FILES = [
+  "scene1.png", "scene2.png", "scene3.png", "scene4.png", "scene5.png", "scene6.png",
+  "scene7.png", "scene8.png", "scene9.png", "scene10.png", "scene11.png", "scene12.png",
+  "scene13.png", "scene14.png", "scene15.png", "scene16.png", "scene17.png", "scene18.png",
+  "scene19.png", "scene20.png", "scene21.png", "scene22.png", "scene23.png", "scene24.png"
+];
+
+function loadImage(src) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve(img);
+    img.onerror = reject;
+    img.src = src;
+  });
+}
+
+async function renderDesignerPreview() {
+  const canvas = document.getElementById("coasterCanvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  const size = canvas.width;
+
+  ctx.clearRect(0, 0, size, size);
+
+  if (DESIGNER.shape === "round") {
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(size / 2, size / 2, size / 2 - 6, 0, Math.PI * 2);
+    ctx.closePath();
+    ctx.clip();
+  }
+
+  try {
+    const scene = await loadImage(`assets/scenes/${DESIGNER.scene}`);
+    ctx.drawImage(scene, 0, 0, size, size);
+  } catch (e) {
+    ctx.fillStyle = "#eee";
+    ctx.fillRect(0, 0, size, size);
+  }
+
+  try {
+    const border = await loadImage(`assets/borders/${DESIGNER.border}`);
+    ctx.drawImage(border, 0, 0, size, size);
+  } catch (e) {}
+
+  if (DESIGNER.shape === "round") {
+    ctx.restore();
+    ctx.beginPath();
+    ctx.arc(size / 2, size / 2, size / 2 - 4, 0, Math.PI * 2);
+    ctx.strokeStyle = "#8b6b45";
+    ctx.lineWidth = 4;
+    ctx.stroke();
+  }
+
+  if (DESIGNER.text.trim()) {
+    ctx.fillStyle = "#2a2a2a";
+    ctx.font = "bold 28px serif";
+    ctx.textAlign = "center";
+    ctx.fillText(DESIGNER.text, size / 2, size - 28);
+  }
+}
+
+function buildThumbOptions(containerId, files, folder, type) {
+  const wrap = document.getElementById(containerId);
+  if (!wrap) return;
+  wrap.innerHTML = "";
+
+  files.forEach((file) => {
+    const div = document.createElement("div");
+    div.className = "thumbOption" + ((type === "border" && DESIGNER.border === file) || (type === "scene" && DESIGNER.scene === file) ? " active" : "");
+    div.innerHTML = `<img src="assets/${folder}/${file}" alt="${file}">`;
+
+    div.addEventListener("click", () => {
+      if (type === "border") DESIGNER.border = file;
+      if (type === "scene") DESIGNER.scene = file;
+
+      buildThumbOptions("borderOptions", BORDER_FILES, "borders", "border");
+      buildThumbOptions("sceneOptions", SCENE_FILES, "scenes", "scene");
+      renderDesignerPreview();
+    });
+
+    wrap.appendChild(div);
+  });
+}
+
+function wireDesigner() {
+  const canvas = document.getElementById("coasterCanvas");
+  if (!canvas) return;
+
+  document.querySelectorAll(".shapeBtn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".shapeBtn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      DESIGNER.shape = btn.getAttribute("data-shape");
+      renderDesignerPreview();
+    });
+  });
+
+  const textInput = document.getElementById("customText");
+  if (textInput) {
+    textInput.addEventListener("input", () => {
+      DESIGNER.text = textInput.value;
+      renderDesignerPreview();
+    });
+  }
+
+  buildThumbOptions("borderOptions", BORDER_FILES, "borders", "border");
+  buildThumbOptions("sceneOptions", SCENE_FILES, "scenes", "scene");
+  renderDesignerPreview();
+
+  const addBtn = document.getElementById("addCustomDesignBtn");
+  if (addBtn) {
+    addBtn.addEventListener("click", () => {
+      const customId = "custom-name-4";
+      state.cart[customId] = (state.cart[customId] || 0) + 1;
+
+      // store design separately
+      localStorage.setItem("wibn_last_custom_design", JSON.stringify(DESIGNER));
+
+      saveCart();
+      renderCart();
+      openCart();
+
+      alert("Custom design added to cart.");
+    });
+  }
+}
+
+document.addEventListener("DOMContentLoaded", wireDesigner);
