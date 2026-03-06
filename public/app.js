@@ -402,7 +402,7 @@ document.addEventListener("DOMContentLoaded", init);
 const DESIGNER = {
   shape: "square",
   border: "border1.png",
-  scene: "scene1.png",
+  scene: "scene1.jpg",
   text: ""
 };
 
@@ -412,7 +412,7 @@ const BORDER_FILES = [
 ];
 
 const SCENE_FILES = [
-  "scene1.png", "scene2.png", "scene3.png", "scene4.png", "scene5.png", "scene6.png",
+  "scene1.jpg", "scene2.jpg", "scene3.jpg", "scene4.jpg", "scene5.jpg", "scene6.jpg",
   "scene7.png", "scene8.png", "scene9.png", "scene10.png", "scene11.png", "scene12.png",
   "scene13.png", "scene14.png", "scene15.png", "scene16.png", "scene17.png", "scene18.png",
   "scene19.png", "scene20.png", "scene21.png", "scene22.png", "scene23.png", "scene24.png"
