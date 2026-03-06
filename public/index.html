@@ -140,7 +140,36 @@ International orders: shipping quote required</div>
     </div>
     <div class="grid" id="grid"></div>
   </section>
+<section id="designer" class="section">
+  <h2>Design Your Coaster</h2>
+  <p class="muted">Choose a shape, border, and scene. Preview your coaster before ordering.</p>
 
+  <div class="designerWrap">
+    <div class="designerControls">
+
+      <label>Shape</label>
+      <div class="optionRow">
+        <button type="button" class="shapeBtn active" data-shape="square">Square</button>
+        <button type="button" class="shapeBtn" data-shape="round">Round</button>
+      </div>
+
+      <label>Border Style</label>
+      <div class="thumbGrid" id="borderOptions"></div>
+
+      <label>Scene / Image</label>
+      <div class="thumbGrid" id="sceneOptions"></div>
+
+      <label>Optional Text</label>
+      <input type="text" id="customText" placeholder="Family name, est. year, etc.">
+
+      <button type="button" class="btn primary" id="addCustomDesignBtn">Add Custom Design to Cart</button>
+    </div>
+
+    <div class="designerPreview">
+      <canvas id="coasterCanvas" width="500" height="500"></canvas>
+    </div>
+  </div>
+</section>
   <section id="custom" class="section" style="display:none;">
     <h2>Custom Orders</h2>
     <p class="muted">Fill this out and I’ll message you to confirm details and send an invoice link.</p>
