@@ -245,6 +245,7 @@ function init(){
   renderGrid();
   renderCart();
   setupCustomForm();
+  document.addEventListener("DOMContentLoaded", init);
 
   on("search", "input", renderGrid);
 on("category", "change", renderGrid);
