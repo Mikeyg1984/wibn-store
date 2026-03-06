@@ -1,7 +1,7 @@
 // ============================
 // Wooden It Be Nice? - CLEAN app.js
 // Replace EVERYTHING in public/app.js with this
-// ============================
+// // update ============================
 
 // Products
 const PRODUCTS = [
