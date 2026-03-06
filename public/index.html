@@ -257,7 +257,9 @@ International orders: shipping quote required</div>
 <div id="thanks" class="section" style="display:none;">
   <h2>Thanks! Your request was sent.</h2>
   <p>I'll review the details and send you an invoice shortly.</p>
-  <button onclick="location.href='/'" class="btn primary">Back to the shop</button>
+  <button onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})" class="btn primary">
+  Back to the shop
+</button>
 </div>
 
 </body>
