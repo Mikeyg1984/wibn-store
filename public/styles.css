@@ -165,3 +165,77 @@ label input, label textarea{margin-top:6px;font-weight:500}
 
 #thanks { display: none; }
 #thanks.show { display: block; }
+.designerWrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.designerControls {
+  display: grid;
+  gap: 14px;
+}
+
+.designerPreview {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 16px;
+  padding: 16px;
+}
+
+#coasterCanvas {
+  width: 100%;
+  max-width: 500px;
+  background: #f8f8f8;
+  border-radius: 16px;
+  display: block;
+}
+
+.optionRow {
+  display: flex;
+  gap: 10px;
+}
+
+.shapeBtn {
+  padding: 10px 16px;
+  border: 1px solid #ccc;
+  background: white;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.shapeBtn.active {
+  background: #222;
+  color: white;
+  border-color: #222;
+}
+
+.thumbGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.thumbOption {
+  border: 2px solid transparent;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  background: white;
+}
+
+.thumbOption.active {
+  border-color: #222;
+}
+
+.thumbOption img {
+  width: 100%;
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .designerWrap {
+    grid-template-columns: 1fr;
+  }
+}
